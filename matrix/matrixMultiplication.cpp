@@ -5,7 +5,7 @@ int main()
 {
     int r1,c1,r2,c2;
     int sum = 0;
-
+    //input matrix-1
     cout<<"For Matrix 1 : "<<endl;
     cout<<"Enter The Number of Rows = ";
     cin>>r1;
@@ -20,8 +20,7 @@ int main()
             cin>>matrix1[row][column];
         }
     }
-
-
+    //input matrix-2
     cout<<"\nFor Matrix 2 : "<<endl;
     cout<<"Enter The Number of Rows = ";
     cin>>r2;
@@ -38,7 +37,7 @@ int main()
             cin>>matrix2[row][column];
         }
     }
-
+    //print matrix-1
     cout<<"\nThe Matrix 1 is : "<<endl<<endl;
     for(int row = 1; row <= r1; row++){
         for(int column = 1; column <= c1; column++){
@@ -46,7 +45,7 @@ int main()
         }
         cout<<endl;
     }
-
+    //print matrix-2
     cout<<"\nThe Matrix 2 is : "<<endl<<endl;
     for(int row = 1; row <= r2; row++){
         for(int column = 1; column <= c2; column++){
@@ -54,7 +53,7 @@ int main()
         }
         cout<<endl;
     }
-
+    //multiplication
     if(r1 == c2){
         for(int row = 1; row <= r1; row++){
             for(int column = 1; column <= c2; column++){
@@ -70,7 +69,7 @@ int main()
         cout<<"\nas Number of rows of matrix1 ("<<r1<<") & number of columns of matrix 2 ("<<c2<<") didn't match.";
         cout<<"\nMultiplication is not possible."<<endl;
     }
-
+    //print multiplied result
     if(r1 == c2){
       cout<<"\nThe Multiplied Matrix is : "<<endl;
         for(int row = 1; row <= r1; row++){
