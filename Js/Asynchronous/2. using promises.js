@@ -19,16 +19,16 @@ const getRecipe = recID => {
 };
 
 const getRelated = publisher => {
-    setTimeout(pub => {
-        return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(pub => {
             const recipe = {
                 title: "Italian Pizza",
                 publisher: "Jonas"
             };
 
             resolve(`${pub}: ${recipe.title}`);
-        })
-    }, 1500, publisher);
+        }, 1500, publisher);
+    });
 };
 
 getIDs
