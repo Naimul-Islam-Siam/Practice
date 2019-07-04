@@ -48,7 +48,7 @@ class Person {
 
 class Athlete extends Person {
     constructor(name, yearOfBirth, job, olympicGames, medals) {
-        super(name, yearOfBirth, job);
+        super(name, yearOfBirth, job); //inherit from super class instead of using <super class name>.call()
         this.olympicGames = olympicGames;
         this.medals = medals;
     }
