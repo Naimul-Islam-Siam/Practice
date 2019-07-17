@@ -1,5 +1,4 @@
 var list = [];
-var counter = 0;
 var highestNumber = 60;
 var lowestNumber = 1;
 var totalNumbersWanted = 30;
