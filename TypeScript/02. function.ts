@@ -7,7 +7,7 @@ function print(): void {
 	//return something; // this will cause error as the return type is void, so it can't return anything
 } // this function will has a void return type
 
-function multuply(num1: number, num2: number): number {
+function multiply(num1: number, num2: number): number {
 	return num1 * num2;
 } // first argument must be a number, second argument must be a number, the function will return a number
 
@@ -18,3 +18,21 @@ let myMultiply = (val1: number, val2: number): number => val1 * val2;
 
 //myMultiply = multiply(5, 4); is allowed
 //myMultiply = print(); is not allowed
+
+let userData = {
+	name: 'Siam',
+	age: 22
+};
+
+// explicit
+let user: { name: string; logo: number } = {
+	name: 'Shakib',
+	logo: 75
+};
+
+//even
+// userData = {
+//   a: 'siam',
+//   b: 22
+//} is not allowed cause in objects name of the properties must match
+// whereas in functions, order of arguments must match
