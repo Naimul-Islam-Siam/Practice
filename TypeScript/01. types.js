@@ -30,3 +30,21 @@ console.log(hobbies);
 var address = ['Manhattan', 100]; //setting the order of types
 // address = [ 100, 'Manhattan' ]; won't be allowed
 // the first element must be string and the second one must be a number
+// ================
+// union type
+// ================
+var newAge; //newAge can be either a number or a string
+newAge = 25;
+newAge = '25';
+//newAge = true; //this is not allowed
+// ================
+// check type
+// ================
+var finalValue = 30;
+if (typeof finalValue === 'string') {
+    // in this case the type name must be inside " " or ' '
+    console.log('Type of finalValue is string');
+}
+else {
+    console.log('finalValue is not a string');
+}
