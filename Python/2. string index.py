@@ -21,5 +21,7 @@ print(number[:5]) # 87654
 # by default from start to 5
 
 print(number[::-1]) # 012345678
+# reverse order
 
 print(number[::-2]) # 02468
+# turn reverse and skip/stepover 2
