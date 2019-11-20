@@ -1,8 +1,14 @@
 name = input("What is your name?") #scanf
 print("My name is " + name)
+
 print(bin(5)) #binary of 5
+
 print(int("0b101", 2)) #first argument is a base 2 number, convert it to an int
+
+print(type(str(5))) #5 will be converted to str, then the type will be a string
+
 print(2 ** 3) #same as 2^3
+
 a,b,c = 1,2,3
 print(a) #1
 print(b) #2
