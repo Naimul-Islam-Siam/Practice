@@ -12,6 +12,7 @@ let now: Date = new Date();
 let colors: string[] = [ 'red', 'black', 'white' ];
 let numbers: number[] = [ 1, 2, 3, 4 ];
 let decisions: boolean[] = [ true, false, true ];
+let dates: (string | Date)[] = [ '22-11-19', new Date() ];
 
 //class
 class Car {
