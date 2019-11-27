@@ -31,3 +31,16 @@ let point: { x: number; y: number } = {
 const logNumber = (num: number): void => {
 	console.log(num);
 };
+
+//tuples
+type Drink = [string, boolean, number]; //type alias
+
+const pepsi: Drink = [ 'brown', true, 40 ];
+const sprite: Drink = [ 'white', true, 40 ];
+const tea: [string, boolean, number] = [ 'brown', false, 0 ];
+
+let drink: { color: string; carbonated: boolean; sugar: number } = {
+	color: 'brown',
+	carbonated: true,
+	sugar: 30
+};
