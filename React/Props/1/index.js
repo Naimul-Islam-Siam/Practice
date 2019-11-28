@@ -7,7 +7,10 @@ class App extends React.Component {
           to="Russel"
           bang="4"
         />
-        <NumPicker />
+
+        <Hello
+          to="Simon"
+        />
       </div>
     )
   }

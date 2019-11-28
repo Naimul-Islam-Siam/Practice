@@ -2,7 +2,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <h1>Slot Machine</h1>
+                <h1 style={{ textAlign: 'center' }}>Slot Machine</h1>
                 <Machine
                     s1="🍇"
                     s2="🍊"
@@ -18,5 +18,5 @@ class App extends React.Component {
         );
     }
 }
-s
+
 ReactDOM.render(<App />, document.getElementById('root'));

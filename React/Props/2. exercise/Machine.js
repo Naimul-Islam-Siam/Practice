@@ -2,11 +2,12 @@ class Machine extends React.Component {
     render() {
         const { s1, s2, s3 } = this.props;
         const winner = (s1 === s2) && (s2 === s3);
+        const symbolStyle = { fontSize: '40px', textAlign: 'center' };
 
         return (
-            <div>
-                <p>{s1} {s2} {s3}</p>
-                <p>{winner ? 'Winner!' : 'Loser'}</p>
+            <div className="Machine">
+                <p style={symbolStyle}>{s1} {s2} {s3}</p>
+                <p className={winner ? 'win' : 'lose'}>{winner ? 'Winner!' : 'Loser'}</p>
             </div>
         );
     }
