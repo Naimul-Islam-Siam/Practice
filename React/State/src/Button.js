@@ -28,6 +28,7 @@ class Button extends Component {
                <Dice face={this.sides[this.state.number1 - 1]} rolling={this.state.rolling} />
                <Dice face={this.sides[this.state.number2 - 1]} rolling={this.state.rolling} />
             </div>
+
             <button onClick={this.handleClick} disabled={this.state.rolling}>
                {this.state.rolling ? "Rolling..." : "Roll Dice!"}
             </button>
