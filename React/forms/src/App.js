@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Form from './Form';
+import ShoppingList from './ShoppingList';
 
 class App extends Component {
    render() {
       return (
-         <Form />
+         <ShoppingList />
       );
    }
 }
