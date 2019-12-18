@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Box from './Box';
 import BoxForm from './BoxForm';
 
@@ -6,10 +6,11 @@ class BoxList extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         boxes: [{ height: 10, width: 20, color: "orange" }]
-      };
+         boxes: []
+      }
 
       this.create = this.create.bind(this);
+      this.remove = this.remove.bind(this);
    }
 
    create(newBox) {
@@ -18,20 +19,28 @@ class BoxList extends Component {
       })
    }
 
+   remove(id) {
+      this.setState({
+         boxes: this.state.boxes.filter(box => box.id !== id)
+      });
+   }
+
    render() {
-      const box = this.state.boxes.map(item => (
+      let boxes = this.state.boxes.map(box => (
          <Box
-            height={item.height}
-            width={item.width}
-            color={item.color}
+            height={box.height}
+            width={box.width}
+            color={box.color}
+            key={box.id}
+            id={box.id}
+            removeBox={() => this.remove(box.id)}
          />
       ));
-
       return (
          <div>
             <h1>Make Things</h1>
             <BoxForm createBox={this.create} />
-            {box}
+            {boxes}
          </div>
       );
    }

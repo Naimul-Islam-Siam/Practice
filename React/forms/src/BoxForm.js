@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import uuid from 'uuid/v4';
 
 class BoxForm extends Component {
    constructor(props) {
       super(props);
+
       this.state = {
          height: "", width: "", color: ""
-      }
+      };
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,10 +21,11 @@ class BoxForm extends Component {
 
    handleSubmit(evt) {
       evt.preventDefault();
-      this.props.createBox(this.state);
+      const newBox = { ...this.state, id: uuid() };
+      this.props.createBox(newBox);
       this.setState({
          height: "", width: "", color: ""
-      })
+      });
    }
 
    render() {
@@ -56,7 +59,7 @@ class BoxForm extends Component {
                   onChange={this.handleChange}
                />
 
-               <button>Add Box</button>
+               <button>Add Box!</button>
             </form>
          </div>
       );
