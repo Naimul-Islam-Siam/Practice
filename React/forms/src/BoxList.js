@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Box from './Box';
+import BoxForm from './BoxForm';
 
 class BoxList extends Component {
    constructor(props) {
@@ -7,6 +8,14 @@ class BoxList extends Component {
       this.state = {
          boxes: [{ height: 10, width: 20, color: "orange" }]
       };
+
+      this.create = this.create.bind(this);
+   }
+
+   create(newBox) {
+      this.setState({
+         boxes: [...this.state.boxes, newBox]
+      })
    }
 
    render() {
@@ -21,6 +30,7 @@ class BoxList extends Component {
       return (
          <div>
             <h1>Make Things</h1>
+            <BoxForm createBox={this.create} />
             {box}
          </div>
       );
