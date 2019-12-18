@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import ShoppingList from './ShoppingList';
+import BoxList from './BoxList';
 
 class App extends Component {
    render() {
       return (
-         <ShoppingList />
+         <div>
+            <ShoppingList />
+            <BoxList />
+         </div>
       );
    }
 }
