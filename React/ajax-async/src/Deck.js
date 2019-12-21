@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Card } from './Card';
+import './Deck.css';
 const api_base_url = "https://deckofcardsapi.com/api/deck";
 
 export class Deck extends Component {
@@ -27,7 +28,6 @@ export class Deck extends Component {
          }
 
          let card = cardRes.data.cards[0];
-         console.log(cardRes.data);
 
          this.setState(st => ({
             drawn: [
@@ -50,10 +50,11 @@ export class Deck extends Component {
       ));
 
       return (
-         <div>
-            <h1>Card Dealer</h1>
-            {cards}
-            <button onClick={this.getCard}>Add Card</button>
+         <div className="Deck">
+            <h1 className="Deck-title">💎Card Dealer💎</h1>
+            <h2 className="Deck-title subtitle">💎A Little Demo Made With React💎</h2>
+            <button className="Deck-btn" onClick={this.getCard}>Add Card</button>
+            <div className="Deck-cardarea">{cards}</div>
          </div>
       );
    }

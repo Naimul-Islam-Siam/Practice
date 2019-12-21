@@ -1,0 +1,38 @@
+.Deck-cardarea {
+   margin-top: 70px;
+   height: 330px;
+}
+
+.Deck {
+   background-color: #17181c;
+   padding: 10px;
+}
+
+.Deck-title {
+   color: azure;
+   font-size: 40px;
+   letter-spacing: 5px;
+   text-transform: uppercase;
+   font-family: 'Slabo 27px';
+}
+
+.subtitle {
+   font-size: 20px;
+}
+
+.Deck-btn {
+   background: none;
+   outline: none;
+   margin: 0.5rem;
+   padding: 1rem 2rem;
+   color: #009688;
+   transition: all 0.2s;
+   font-family: 'Slabo 27px';
+}
+
+.Deck-btn:hover {
+   background: #4caf50;
+   color: azure;
+   border-color: #4caf50;
+   cursor: pointer;
+}

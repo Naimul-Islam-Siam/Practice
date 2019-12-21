@@ -18,7 +18,7 @@ class GithubInfo extends Component {
 
    render() {
       return (
-         <div>
+         <div className="Github">
             <h4>Name: {this.state.name}</h4>
             <img src={this.state.imgUrl} alt={this.state.name} />
          </div>
