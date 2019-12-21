@@ -23,6 +23,7 @@
 .Deck-btn {
    background: none;
    outline: none;
+   border-color: azure;
    margin: 0.5rem;
    padding: 1rem 2rem;
    color: #009688;
