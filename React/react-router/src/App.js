@@ -10,6 +10,7 @@ import "./App.css";
 import { Route, Switch, NavLink } from "react-router-dom";
 import Food from './Food';
 import FoodSearch from "./FoodSearch";
+import NavBar from "./NavBar";
 
 const Hater = () => <h1>I ABSOLUTELY HATE DOGS!</h1>;
 
@@ -31,7 +32,7 @@ class App extends Component {
         {/* <Route exact path="/dog" render={() => <Dog name="Muffin" />} /> */}
         {/* <Route exact path="/contact" component={Contact} /> */}
         {/* </Switch> */}
-
+        <NavBar />
         <Switch>
           <Route
             exact
@@ -42,7 +43,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => <FoodSearch />}
+            component={FoodSearch}
           />
 
           <Route

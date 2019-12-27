@@ -6,7 +6,8 @@ class FoodSearch extends Component {
       super(props);
       this.state = { query: "" };
       this.handleChange = this.handleChange.bind(this);
-      // this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleClick = this.handleClick.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
    }
 
    handleChange(evt) {
@@ -15,9 +16,17 @@ class FoodSearch extends Component {
       });
    }
 
+   handleClick() {
+      this.props.history.push(`/food/${this.state.query}`);
+   }
+
+   handleSubmit() {
+      this.handleClick();
+   }
+
    render() {
       return (
-         <form>
+         <form onSubmit={this.handleSubmit}>
             <label htmlFor="query">Search Food: </label>
             <input
                type="text"
@@ -27,7 +36,8 @@ class FoodSearch extends Component {
                value={this.state.query}
                onChange={this.handleChange}
             />
-            <Link to={`/food/${this.state.query}`}>Go!</Link>
+            <button onClick={this.handleClick}>Submit</button>
+            {/* <Link to={`/food/${this.state.query}`}>Go!</Link> */}
          </form>
       );
    }
