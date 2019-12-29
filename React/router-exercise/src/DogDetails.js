@@ -9,7 +9,7 @@ class DogDetails extends Component {
          <div className="container">
             <div className="DogDetails row justify-content-center text-left mt-5">
                <div className="col-11 col-lg-5">
-                  <div className="DogDetails-card card">
+                  <div className="DogDetails-card card mb-5">
                      <img className="card-img-top" src={dog.src} alt={dog.name} />
 
                      <div className="card-body">
