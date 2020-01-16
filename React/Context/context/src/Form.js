@@ -56,6 +56,6 @@ class Form extends Component {
             </Paper>
          </main>
       );
-   }
+   };
 }
 export default withStyles(styles)(Form);
