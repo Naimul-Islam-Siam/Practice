@@ -6,7 +6,7 @@ class PageContent extends Component {
    render() {
       const { isDarkMode } = this.context;
       const styles = {
-         backgroundColor: isDarkMode ? "#200f21" : "#fff",
+         backgroundColor: isDarkMode ? "#37474f" : "#eae1e1",
          width: "100vw",
          height: "100vh"
       };
