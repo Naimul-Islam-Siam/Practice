@@ -11,6 +11,10 @@ const server = http.createServer((req, res) => {
    } else if (pathname === '/contact') {
       res.end("This is the contact page");
    } else {
+      res.writeHead(404, {
+         'Content-type': 'text/html'
+      });
+
       res.end("404 Page doesn't exist");
    }
 });
