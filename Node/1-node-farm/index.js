@@ -51,6 +51,15 @@ const server = http.createServer((req, res) => {
 
       res.end(data);
    }
+
+   // 404
+   else {
+      res.writeHead(404, {
+         'Content-type': 'text/html'
+      });
+
+      res.end("Page Not Found!!");
+   }
 });
 
 
