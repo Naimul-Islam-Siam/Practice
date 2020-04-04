@@ -10,9 +10,26 @@ const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.htm
 const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
 
 
+const replaceTemplate = (template, product) => {
+   let output = template.replace(/{%product_name%}/g, product.productName);
+   output = output.replace(/{%image%}/g, product.image);
+   output = output.replace(/{%quantity%}/g, product.quantity);
+   output = output.replace(/{%price%}/g, product.price);
+   output = output.replace(/{%id%}/g, product.id);
+   output = output.replace(/{%from%}/g, product.from);
+   output = output.replace(/{%nutrients%}/g, product.nutrients);
+   output = output.replace(/{%description%}/g, product.description);
+
+   if (!product.organic) {
+      output = output.replace(/{%not_organic%}/g, 'not-organic');
+   }
+
+   return output;
+}
+
 // server
 const server = http.createServer((req, res) => {
-   const pathname = req.url;
+   const { query, pathname } = url.parse(req.url, true);
 
    // overview page
    if (pathname === '' || pathname === '/') {
@@ -20,13 +37,25 @@ const server = http.createServer((req, res) => {
          'Content-type': 'text/html'
       });
 
-      res.end(tempOverview);
+      const cardsHTML = dataObject.map(el => replaceTemplate(tempCard, el)).join('');
+
+      const output = tempOverview.replace('{%product_cards%}', cardsHTML);
+
+      res.end(output);
    }
 
 
    // product page
    else if (pathname === '/product') {
-      res.end('This is the product page');
+      res.writeHead(200, {
+         'Content-type': 'text/html'
+      });
+
+      const product = dataObject[query.id];
+
+      const output = replaceTemplate(tempProduct, product);
+
+      res.end(output);
    }
 
 
