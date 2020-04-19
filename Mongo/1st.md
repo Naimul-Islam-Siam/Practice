@@ -10,12 +10,26 @@ db.collection-name.find() <!-- Shows the whole collection / table -->
 
 db.collection-name.find({name: ""}) <!-- Specific search -->
 
-db.collection-name.find( { rating: { $lte 4.5 } } ) <!-- $lte = less than or equal -->
+db.collection-name.find( { rating: { $lte: 4.5 } } ) <!-- $lte = less than or equal -->
 
 <!-- AND query -->
-db.collection-name.find( { rating: { $lte 4.5 } ,  price: { $gte 500 } } ) <!-- rating <= 4.5 && price >= 500 -->
+
+db.collection-name.find( { rating: { $lte: 4.5 } ,  price: { $gte: 500 } } ) <!-- rating <= 4.5 && price >= 500 -->
 
 <!-- OR query -->
-db.collection-name.find( { $or: [ { price: { $lte 500 } }, { rating: {$gte 4.2} } ] } )
 
-db.collection-name.find( { $or: [ { price: { $lte 500 } }, { rating: {$gte 4.2} } ] }, { name : 1} ) <!-- only show the name column -->
+db.collection-name.find( { $or: [ { price: { $lte: 500 } }, { rating: { \$gte: 4.2} } ] } )
+
+db.collection-name.find( { $or: [ { price: { $lte: 500 } }, { rating: { \$gte: 4.2} } ] }, { name : 1} ) <!-- only show the name column -->
+
+<!-- UPDATE -->
+
+db.collection-name.updateOne( { name: ""}, { \$set: { price: ""} } )
+
+db.collection-name.updateMany( { price: { $gte 500}, rating: { $gte 4.7} }, { \$set: { premium: true} } )
+
+<!-- DELETE -->
+
+db.collection-name.deleteMany({}) <!-- will delete everything -->
+
+db.collection-name.deleteMany({rating:{ \$lte:2.3}})
