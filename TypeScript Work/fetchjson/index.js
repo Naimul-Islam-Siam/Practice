@@ -6,5 +6,8 @@ var url = "https://jsonplaceholder.typicode.com/todos/1";
 axios_1["default"].get(url).then(function (res) {
     var todo = res.data;
     var id = todo.id, title = todo.title, completed = todo.completed;
-    console.log("\n      The Todo with the ID: " + id + "\n      Has title of: " + title + "\n      Is it completed: " + completed + "\n   ");
+    logTodo(id, title, completed);
 });
+var logTodo = function (id, title, completed) {
+    console.log("\n      The Todo with the ID: " + id + "\n      Has title of: " + title + "\n      Is it completed: " + completed + "\n   ");
+};
