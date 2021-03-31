@@ -14,13 +14,6 @@ let numbers: number[] = [ 1, 2, 3, 4 ];
 let decisions: boolean[] = [ true, false, true ];
 let dates: (string | Date)[] = [ '22-11-19', new Date() ];
 
-//class
-class Car {
-	//
-}
-
-let car: Car = new Car();
-
 //object literal
 let point: { x: number; y: number } = {
 	x: 10,
