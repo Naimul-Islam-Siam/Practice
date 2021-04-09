@@ -10,4 +10,4 @@
 - [Matplotlib_Intro](https://nbviewer.jupyter.org/github/Naimul-Islam-Siam/Practice/blob/master/ML/Matplotlib/Matplotlib_Intro.ipynb)
 
 ### 4. Scikit-learn Notebook:
-- [Scikit-learn_Cheatsheet](https://github.com/Naimul-Islam-Siam/Practice/blob/master/ML/Scikit-learn/scikit_learn_cheatsheet.ipynb)
+- [Scikit-learn_Cheatsheet](https://nbviewer.jupyter.org/github/Naimul-Islam-Siam/Practice/blob/master/ML/Scikit-learn/scikit_learn_cheatsheet.ipynb)
