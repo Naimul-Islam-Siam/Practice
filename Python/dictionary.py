@@ -21,3 +21,12 @@ print(user2) # {'country': 'uk', 'package': 'standard'}
 user2.update({'country': 'esp'})
 
 print(user2) # {'country': 'esp', 'package': 'standard'}
+
+for key in user.keys():
+   print(key)
+
+for value in user.values():
+   print(value)
+
+for key, value in user.items():
+   print(key, value)
