@@ -4,7 +4,7 @@ import { useActions } from '../hooks/useActions';
 
 const RepositoriesList: React.FC = () => {
    const [term, setTerm] = useState('');
-   const {searchRepositories} = useActions();
+   const { searchRepositories } = useActions();
    const state = useTypedSelector((state) => state.repositories);
    const { data, loading, error } = state;
 
@@ -19,6 +19,9 @@ const RepositoriesList: React.FC = () => {
          <form onSubmit={onSubmit}>
             <input value={term} onChange={(e) => setTerm(e.target.value)}/>
             <button>Search</button>
+            {error && <h3>{error}</h3>}
+            {loading && <h3>{loading}</h3>}
+            {!error && !loading && data.map((name)=> <div key={name}>{name}</div>)}
          </form>
       </div>    
    );
