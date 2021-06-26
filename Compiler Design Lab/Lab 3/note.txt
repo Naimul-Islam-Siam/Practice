@@ -2,6 +2,14 @@
 * means 0 or more
 + mean 1 or more which means there should be atleast 1 digit
 
+---------------------------------------------------------------
+
+flex bison are not any programming language, they are tools
+
+the responsibility of lex/flex is to generate tokens
+the responsibility of bison/yacc is to parse/match pattern/check grammar
+
+
 ----------------------------------------------------------------
 
 lex filename
@@ -30,3 +38,18 @@ delim [ \t]
 ws {delim}+
 
 is used to remove whitespacess
+
+-------------------------------------------------------------------------------
+
+Another name of token is terminal (jeita match korabo)
+rules are non terminal
+
+cal: exp // non terminal
+exp: NUM ADD NUM // terminal
+
+----------------------------------------------------------------------------------
+
+yacc -d cal.y // generates header file
+header file will assign numerical value (randomly generated) to tokens (NUM, ADD, SUB)
+then to link this value to lex file we will include the header file in the lex file
+other wise lex won't understand what to return

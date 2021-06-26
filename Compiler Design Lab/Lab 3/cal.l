@@ -1,7 +1,7 @@
 %option noyywrap
 
 %{
-   
+   #include "cal.tab.h"
 %}
 
 delim [ \t]
@@ -11,11 +11,7 @@ number ({digit}+)
 
 %%
 {ws} {}
-{number} {printf("%s NUMBER\n", yytext);}
-"+" {printf("%s ADD\n", yytext);}
+{number} {return(NUM);}
+"+" {return(ADD);}
+"-" {return(SUB);}
 %%
-
-int main() {
-   yylex();
-   return 0;
-}
