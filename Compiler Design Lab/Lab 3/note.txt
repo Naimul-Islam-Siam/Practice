@@ -1,0 +1,32 @@
++ vs *
+* means 0 or more
++ mean 1 or more which means there should be atleast 1 digit
+
+----------------------------------------------------------------
+
+lex filename
+gcc lex.yy.c
+a
+
+make main
+
+----------------------------------------------------------------
+
+%{
+void yyerror(char *s);
+int yylex();   
+%} 
+
+in .y file writing doesn't necessarily mean we will call these function
+but it is to re-ensure that these functions do exist in some files 
+
+yacc does parsing (yacc parsing kore) -> matches grammar (grammar match kore dekhe)
+
+we write rules in yacc file (.y)
+
+------------------------------------------------------------------------------
+
+delim [ \t]
+ws {delim}+
+
+is used to remove whitespacess
