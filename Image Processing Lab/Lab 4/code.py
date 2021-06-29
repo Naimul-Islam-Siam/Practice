@@ -1,3 +1,6 @@
+## Notebook Link: 
+# https://nbviewer.jupyter.org/github/Naimul-Islam-Siam/Practice/blob/master/Image%20Processing%20Lab/Lab%204/notebook.ipynb
+
 # ========================================
 # Modules
 # ========================================
@@ -24,10 +27,11 @@ image_path = "/content/drive/MyDrive/imgae processing lab/"
 def image_size(img):
   return os.path.getsize(img)
 
-img = cv2.imread(f'{image_path}image.png')
+img = cv2.imread(f'{image_path}image.tiff')
 show_image(img, "Original Image");
 
-image_size(f'{image_path}image.png')
+# Uncompressed Original Image Size
+image_size(f'{image_path}image.tiff')
 
 
 # ========================================
@@ -38,8 +42,6 @@ gray_original = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 show_image(gray_original, "Gray")
 
-image_size(f'{image_path}gray.png')
-
 gray_original.shape[0], gray_original.shape[1]
 
 
@@ -48,15 +50,19 @@ gray_original.shape[0], gray_original.shape[1]
 # ========================================
 
 def find_bit_rate(gray_image):
-  cv2.imwrite(f'{image_path}gray.png', gray_image)
+  cv2.imwrite(f'{image_path}gray.tiff', gray_image)
   gray_width, gray_height = gray_image.shape[0], gray_image.shape[1]
-  gray_size = image_size(f'{image_path}gray.png')
+  gray_size = image_size(f'{image_path}gray.tiff')
   bit_rate = (gray_size * 8) / (gray_width * gray_height)
 
   return bit_rate
 
-# get bit rate
+
+# Get bitrate for Uncompressed Image
 find_bit_rate(gray_original)
+
+# Uncompressed Grayscale Image Size
+image_size(f'{image_path}gray.tiff')
 
 
 # ========================================
@@ -99,10 +105,9 @@ def splt2(img):
 
   return pred11
 
-# compress
 compressed_img = splt2(gray_original)
 
-# get entopy
+# Compressed Image
 find_entropy(compressed_img)
 
 
@@ -179,7 +184,7 @@ def temporal_sptl2(img, c):
 for i in range(1, 8):
   vars()[f'temp_comp_{i}'] = temporal_sptl2(gray_original, i)
 
-results = []
+results = [{'case_name': 'Original', 'entropy': find_entropy(gray_original)}]
 
 for i in range(1, 8):
   vars()[f'entropy_temp_comp_{i}'] = find_entropy(vars()[f'temp_comp_{i}']['value'])
@@ -190,6 +195,24 @@ for i in range(1, 8):
 
 results
 
+
+# ========================================
+# Function: Calculate Minimum Entropy
+# ========================================
+
+def find_minimum_entropy(results):
+  minimum_val = 100
+  i = -1
+
+  for result in results:
+    i = i + 1
+    if result['entropy'] < minimum_val:
+      minimum_val = result['entropy']
+      case_name = result['case_name']
+      min_index = i
+  
+  return {'case': case_name, 'value': minimum_val, 'min_index': min_index}
+
 results_pd = pd.DataFrame(results)
 
 
@@ -198,3 +221,36 @@ results_pd = pd.DataFrame(results)
 # ========================================
 
 results_pd
+
+min_entropy = find_minimum_entropy(results)
+min_entropy
+
+
+# ========================================
+# Plot
+# ========================================
+
+index_of_minimum_entropy = min_entropy['min_index']
+
+# Plot Entropy
+plt.style.use('seaborn-whitegrid') # style theme of plots
+
+fig, ax = plt.subplots(figsize=(13, 8))
+
+ax.set(title="Entropy for Different Cases",
+       xlabel="Entropy",
+       ylabel="Cases")
+
+y = list(results_pd['entropy'])
+
+for i, v in enumerate(y):
+    ax.text(v + 0.2, i, str(v), 
+            color = 'black', fontsize=13)
+
+bar_list = ax.barh(results_pd['case_name'], width=results_pd['entropy'])
+
+bar_list[index_of_minimum_entropy].set_color('r')
+
+plt.show();
+
+print(f"Minimum Entropy is for case: {min_entropy['case']} and the value is: {min_entropy['value']}")
