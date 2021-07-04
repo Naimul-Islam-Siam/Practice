@@ -1,0 +1,7 @@
+while -> WHILE 
+ ( -> LP 
+b_c -> IDENTIFIER 
+ > -> GREATER_THAN 
+ 10 -> NUMBER 
+) -> RP 
+; -> SEMICOLON 
