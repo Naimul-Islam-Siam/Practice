@@ -31,3 +31,21 @@ SELECT name, price FROM phones WHERE units_sold > 5000;
 SELECT name, manufacturer FROM phones WHERE manufacturer='Apple' OR manufacturer='Samsung';
 -- same:
 SELECT name, manufacturer FROM phones WHERE manufacturer IN ('Apple', 'Samsung');
+
+SELECT name, price*units_sold AS total_revenue FROM phones WHERE price*units_sold > 1000000
+
+
+
+-- UPDATE 
+UPDATE cities SET population = 39505000 WHERE name = 'Tokyo'; 
+-- if multiple records match, all of them will be updated
+
+
+-- DELETE
+DELETE FROM cities WHERE name = 'Tokyo';
+-- if multiple records match, all of them will be deleted
+
+
+-- Exercise
+UPDATE phones SET units_sold = 8543 WHERE name = 'N8';
+DELETE FROM phones WHERE manufacturer = 'Samsung';
