@@ -81,8 +81,19 @@ VALUES
 
 -- What happens when we delete a user that is referencing a photo/photos:
 
--- ON DELETE RESTRICT -> Will not allow the user to be deleted
--- ON DELETE NO ACTION -> kind of same as restrict but some slight differences
--- ON DELETE CASCADE -> Will delete the user and all the photos it was referencing
--- ON DELETE SET NULL -> Delete the user and set the user_id of photos associated to NULL
--- ON DELET SET DEFAULT -> User will be deleted and user_id will be set to a default value, if one is provided 
+-- 1. ON DELETE RESTRICT -> Will not allow the user to be deleted
+
+-- 2. ON DELETE NO ACTION -> kind of same as restrict but some slight differences
+
+-- 3. ON DELETE CASCADE -> Will delete the user and all the photos it was referencing
+-- Example Case: When a post is deleted all the comments associated to that post should also be deleted
+CREATE TABLE photos (
+  id SERIAL PRIMARY KEY,
+  url VARCHAR(200),
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- 4. ON DELETE SET NULL -> Delete the user and set the user_id of photos associated to NULL
+-- Example Case: A post might be very important but the user who posted it might be problematic. So we want to delete the user but still want to hold the post
+
+-- 5. ON DELET SET DEFAULT -> User will be deleted and user_id will be set to a default value, if one is provided 
