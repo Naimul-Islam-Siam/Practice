@@ -40,3 +40,43 @@ SELECT comments.id AS comment_id, photos.id AS photo_id FROM comments JOIN photo
 -- Merge everything whether they match or not
 -- Rows and Columns that doesn't match might get NULL value if needed
 -- All possible rows/records considering both tables of JOIN must be included 
+
+
+-- LEFT JOIN and RIGHT JOIN changes tables value depending on the Order of tables in JOIN and FROM
+
+
+
+-- Exercise:
+-- Show all authors name even if they don't have any book associated to them in the books table
+SELECT title, name FROM authors LEFT JOIN books ON authors.id = books.author_id
+-- same:
+SELECT title, name FROM books RIGHT JOIN authors ON authors.id = books.author_id
+
+
+-- Show url of photo and comment on the photo only where the creator of the post commented on the post
+-- Owner of the post commented on his own post
+SELECT url, contents
+FROM comments JOIN photos 
+ON comments.photo_id = photos.id
+WHERE comments.user_id = photos.user_id;
+
+
+-- Multiple tables JOIN
+SELECT url, contents, username
+FROM comments 
+JOIN photos ON comments.photo_id = photos.id
+JOIN users ON comments.user_id = users.id;
+
+
+-- Only the posts where Owner of the post commented on his own post, print username of those users too
+SELECT url, contents, username
+FROM comments 
+JOIN photos ON comments.photo_id = photos.id
+JOIN users ON comments.user_id = users.id AND photos.user_id = users.id;
+
+
+-- Only show the records where the author of the book is also the reviewer of the book
+SELECT title, name, rating
+FROM books 
+JOIN authors ON books.author_id = authors.id
+JOIN reviews ON reviews.book_id = books.id AND reviews.reviewer_id = books.author_id;
