@@ -76,3 +76,18 @@ EXCEPT
 )
 
 -- incase of EXCEPT: order of table matters
+
+
+-- Exercise: show manufacturer of phones where phone's price is less than 170 and manufacturer has created at least 2 models of phones
+(
+  SELECT manufacturer 
+  FROM phones 
+  WHERE price < 170
+)
+UNION
+(
+  SELECT manufacturer 
+  FROM phones 
+  GROUP BY manufacturer 
+  HAVING COUNT(manufacturer) > 2
+)
