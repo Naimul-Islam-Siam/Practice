@@ -17,5 +17,17 @@ FROM (
 WHERE price_weight_ratio > 5;
 
 
+
+-- FROM subquery
+-- Print the average number of orders per user
+SELECT AVG(p.order_count)
+FROM (
+  SELECT user_id, COUNT(*) AS order_count
+  FROM products
+  GROUP BY user_id
+) AS p
+
+
+
 -- Rules for SubQuery:
 -- 1. If a subquery returns a single result, it can be used in SELECT -> SELECT id, (SELECT MAX(price) FROM products) FROM db;
