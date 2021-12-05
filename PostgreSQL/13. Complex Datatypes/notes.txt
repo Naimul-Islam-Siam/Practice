@@ -1,0 +1,6 @@
+Data types related to numbers
+
+1. for id -> use SERIAL
+2. need to store a non decimal number -> use INTEGER
+3. stored number must be decimal and extremely accurate (gold weight, bank balance, scientific calculations) -> use NUMERIC
+4. need to store a number with decimal but the number doesn't need to be very accurate (kg of trash, litre of water in pond) -> use DOUBLE PRECISION
