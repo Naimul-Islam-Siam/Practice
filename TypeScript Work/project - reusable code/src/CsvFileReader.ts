@@ -1,4 +1,5 @@
 import fs from "fs";
+
 export class CsvFileReader {
    data: string[][] = [];
 
