@@ -1,24 +1,22 @@
 import { CsvFileReader } from "./CsvFileReader";
+import { MatchReader } from "./MatchReader";
+import { MatchResults } from "./MatchResults";
+import { MatchData } from "./MatchData";
 
-const reader = new CsvFileReader("football.csv");
-reader.read();
+// Read the dataset that's in CSV format
+const csvFileReader = new CsvFileReader("football.csv");
 
-const matches: string[][] = reader.data;
+const matchReader = new MatchReader(csvFileReader);
+matchReader.load();
 
-
-// enumeration -> set of very closely related values
-enum matchResults {
-    homeWin = "H",
-    awayWin = "A",
-    draw = "D"
-};
+const matches: MatchData[] = matchReader.matches;
 
 let manUnitedWins: number = 0;
 
 for(let match of matches) {
-   if(match[1] === "Man United" && match[5] === matchResults.homeWin) {
+   if(match[1] === "Man United" && match[5] === MatchResults.homeWin) {
       manUnitedWins++;
-   } else if(match[2] === "Man United" && match[5] === matchResults.awayWin) {
+   } else if(match[2] === "Man United" && match[5] === MatchResults.awayWin) {
       manUnitedWins++;
    }
 }
