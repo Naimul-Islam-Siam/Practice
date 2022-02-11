@@ -9,9 +9,9 @@ export class WinsAnalysis implements Analyzer {
       let winsCounter: number = 0;
 
       for(let match of matches) {
-         if(match[1] === "Man United" && match[5] === MatchResults.homeWin) {
+         if(match[1] === this.team && match[5] === MatchResults.homeWin) {
             winsCounter++;
-         } else if(match[2] === "Man United" && match[5] === MatchResults.awayWin) {
+         } else if(match[2] === this.team && match[5] === MatchResults.awayWin) {
             winsCounter++;
          }
       }
