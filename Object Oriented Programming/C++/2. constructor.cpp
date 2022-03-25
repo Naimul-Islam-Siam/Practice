@@ -6,6 +6,7 @@
       incase you don't create any explicitly.
    
    If we declare a constructor explicitly, the default constructor will be removed by compiler.
+   This is applicable to inherited children classes too.
 
    Rules for creating a constructor:
    1. unlike other methods, constructor doesn't have any return type
