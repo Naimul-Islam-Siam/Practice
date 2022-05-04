@@ -9,7 +9,7 @@ int main()
 {
    char first_name[20];
    char last_name[20];
-   char full_name_suppose[40];
+   char full_name_supposed[40];
    char full_name_actual[50];
 
    cout << first_name << endl; // garbage value
@@ -23,20 +23,20 @@ int main()
    cout << "Your firstname, " << first_name << " has " << strlen(first_name) << " characters." << endl;
    cout << "Your lasttname, " << last_name << " has " << strlen(last_name) << " characters." << endl;
 
-   strcpy(full_name_suppose, first_name);
-   strcat(full_name_suppose, " ");
-   strcat(full_name_suppose, last_name);
+   strcpy(full_name_supposed, first_name);
+   strcat(full_name_supposed, " ");
+   strcat(full_name_supposed, last_name);
 
-   cout << "Your supposedly fullname, " << full_name_suppose << " has " << strlen(full_name_suppose) << " characters." << endl;
+   cout << "Your supposedly fullname, " << full_name_supposed << " has " << strlen(full_name_supposed) << " characters." << endl;
 
    // convert to uppercase
-   for (size_t i = 0; i < strlen(full_name_suppose); i++)
+   for (size_t i = 0; i < strlen(full_name_supposed); i++)
    {
-      if (isalpha(full_name_suppose[i])) // check whether the char is an alphabet or not
+      if (isalpha(full_name_supposed[i])) // check whether the char is an alphabet or not
       {
-         full_name_suppose[i] = toupper(full_name_suppose[i]);
+         full_name_supposed[i] = toupper(full_name_supposed[i]);
       }
    }
 
-   cout << "Your supposedly fullname in uppercase = " << full_name_suppose << endl;
+   cout << "Your supposedly fullname in uppercase = " << full_name_supposed << endl;
 };
