@@ -19,7 +19,8 @@
 #define MAX 70    // Number of values in the array
 #define COLORS 90 // Max Color Length
 
-/*~~Global Variables~~*/
+// =================== Global Variables ===================
+
 int a[MAX];        // Sorting Array
 double cc[COLORS]; // Color Array
 char text1[5];
@@ -27,18 +28,19 @@ char text2[5];
 int swapflag = 0; // Flag to check if swapping has occured
 int i = 0, j = 0; // To iterate through the array
 int flag = 0;     // For Insertion Sort
-int dirflag = 0;  // For Ripple Sort, to change direction at the ends
+int dirflag = 0;  // change direction at the ends
 int count = 1;    // For Ripple Sort, to keep count of how many are sorted at the end
 int sorting = 0;  // 1 if Sorted
 const char *sort_string[] = {"Bubble Sort", "Selection Sort", "Insertion Sort"};
 int sort_count = 0; // To cycle through the string
 int speed = 10;     // Speed of sorting
-int arrayFlag = 1;
-int backFlag = 1;
-int fastslow = 0;
-int vertical_index;
+int arrayFlag = 1;  // array formation intialize
+int backFlag = 1;   // reset value track color or array
+int fastslow = 0;   // mode for continuous or individual animation
+int vertical_index; // bar swap animation
 
-/*{~~Function Declarations~~*/
+// =================== Function Declarations ===================
+
 double randomFlaot();
 void bitmap_output(int, int, const char *, void *);
 void makedelay(int);
@@ -53,13 +55,10 @@ void bubblesort();
 void selectionsort();
 void insertionsort();
 char *whichmode(char k);
-void quickSort(int low, int high);
-int partition(int low, int high);
 void swap(int *a, int *b);
 
-/*~~Function Definations~~*/
+// =================== Function Definaions ===================
 
-// Function Definaions
 char *whichmode(const int d)
 {
    if (d == 1)
@@ -92,7 +91,7 @@ void bitmap_output(int x, int y, const char *string, void *font)
 // Function to integer to string
 void int_str(int rad, char r[])
 {
-   snprintf(r, 10, "%d", rad);
+   snprintf(r, 10, "%d", rad); // stores a series of characters and values in the array buffer
 }
 
 // Home Screen Static Texts
@@ -100,25 +99,19 @@ void display_text()
 {
    glColor3d(cc[36], cc[37], cc[38]);
    bitmap_output(250, 750, "SORTING ALGORITHM VISUALIZER", GLUT_BITMAP_TIMES_ROMAN_24);
-   // glBegin(GL_LINE_LOOP);
-   // glVertex2f(145, 700);
-   // glVertex2f(520, 700);
-   // glEnd();
+
    char text[20]; // other text small font
    glColor3d(cc[39], cc[40], cc[41]);
    bitmap_output(15, 700, "Sort a random set of integers in ascending order", GLUT_BITMAP_HELVETICA_18);
    bitmap_output(15, 680, "display the array elements as bars with varying height", GLUT_BITMAP_HELVETICA_18);
 
-   // glColor3f(0.5, 0.5, 0.5);
    glColor3d(cc[42], cc[43], cc[44]);
    int_str(speed, text);
    strcat(text, "ms");
-   // bitmap_output(620, 510, "Speed:", GLUT_BITMAP_HELVETICA_18);
-   // strcat(mode, "Mode");
+
    bitmap_output(600, 510, whichmode(fastslow), GLUT_BITMAP_HELVETICA_18);
-   // bitmap_output(650, 510, text, GLUT_BITMAP_HELVETICA_18);
+
    char iff[50] = "swapping ";
-   // strcat(texts, " swapping ");
    strcat(iff, text1);
    strcat(iff, " and ");
    strcat(iff, text2);
@@ -143,7 +136,7 @@ void display_text()
    glColor3d(cc[56], cc[77], cc[36]);
    bitmap_output(550.0, 700.0, "STEP", GLUT_BITMAP_TIMES_ROMAN_24);
    glColor3d(cc[34], cc[58], cc[28]);
-   // bitmap_output(470, 650, texts, GLUT_BITMAP_HELVETICA_18);
+
    bitmap_output(470, 600, iff, GLUT_BITMAP_HELVETICA_18);
 
    glColor3d(cc[54], cc[55], cc[56]);
@@ -168,6 +161,7 @@ void display_text()
 }
 
 // =================== Random Initialization of Array ===================
+
 void Initialize()
 {
    srand(time(0)); // Use current time as seed for random generator
@@ -286,7 +280,7 @@ void makedelay(int)
       sorting = 0;
    }
 
-   speed = 1;
+   speed = 10; // in milliseconds
    glutPostRedisplay();
    glutTimerFunc(speed, makedelay, 100);
 }
@@ -466,6 +460,7 @@ A:
 }
 
 // =================== To find gap between elements ===================
+
 int getNextGap(int gap)
 {
    // Shrink gap by Shrink factor
@@ -483,6 +478,7 @@ void swap(int *a, int *b)
 }
 
 // =================== MAIN FUNCTION ===================
+
 int main(int argc, char **argv)
 {
    glutInit(&argc, argv);
