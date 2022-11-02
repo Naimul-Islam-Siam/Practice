@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import CreateNotes from "./CreateNotes";
 import styles from "./notes.module.css";
 
 async function getNotes() {
@@ -33,6 +34,8 @@ export default async function NotesPage() {
                return <Note key={note.id} note={note} />
             })}
          </div>
+
+         <CreateNotes />
       </div>
    );
 };
