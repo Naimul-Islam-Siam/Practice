@@ -5,14 +5,15 @@ import (
 	"strings"
 )
 
-func main() {
-	const eventName string = "Go Conference, 2022"
-	const totalTickets uint8 = 50
-	const reservedTickets uint8 = 10
-	var remainingTickets uint8 = totalTickets - reservedTickets
-	var bookings []string
+const eventName string = "Go Conference, 2022"
+const totalTickets uint8 = 50
+const reservedTickets uint8 = 10
 
-	greetUser(eventName, remainingTickets)
+var remainingTickets uint8 = totalTickets - reservedTickets
+var bookings []string
+
+func main() {
+	greetUser()
 
 	var firstName string
 	var lastName string
@@ -26,14 +27,14 @@ func main() {
 		var isValidEmail bool
 		var isValidTicketNumber bool
 
-		isValidName, isValidEmail, isValidTicketNumber = validateUserInput(firstName, lastName, email, userTickets, remainingTickets)
+		isValidName, isValidEmail, isValidTicketNumber = validateUserInput(firstName, lastName, email, userTickets)
 
 		if isValidName && isValidEmail && isValidTicketNumber {
-			bookings, remainingTickets = bookTicket(bookings, firstName, lastName, userTickets, remainingTickets)
+			bookings, remainingTickets = bookTicket(firstName, lastName, userTickets)
 
 			fmt.Printf("Congratulations %v %v. You bought %v tickets. A confirmation mail will be sent to %v.\n", firstName, lastName, userTickets, email)
 
-			var firstNamesofUsers []string = getBookedUsersName(bookings)
+			var firstNamesofUsers []string = getBookedUsersName()
 
 			fmt.Printf("%v tickets left.\n People who booked: %v.\n", remainingTickets, firstNamesofUsers)
 
@@ -57,7 +58,7 @@ func main() {
 	}
 }
 
-func greetUser(eventName string, remainingTickets uint8) {
+func greetUser() {
 	fmt.Println("Welcome to", eventName, "booking")
 	fmt.Printf("Only %v tickets left\n", remainingTickets)
 	fmt.Println("Hurry up! Get your tickets now!")
@@ -84,7 +85,7 @@ func getUserInput() (string, string, string, uint8) {
 	return firstName, lastName, email, userTickets
 }
 
-func validateUserInput(firstName string, lastName string, email string, userTickets uint8, remainingTickets uint8) (bool, bool, bool) {
+func validateUserInput(firstName string, lastName string, email string, userTickets uint8) (bool, bool, bool) {
 	var isValidName bool = len(firstName) >= 2 && len(lastName) >= 2
 	var isValidEmail bool = strings.Contains(email, "@")
 	var isValidTicketNumber bool = userTickets > 0 && userTickets <= remainingTickets
@@ -92,7 +93,7 @@ func validateUserInput(firstName string, lastName string, email string, userTick
 	return isValidName, isValidEmail, isValidTicketNumber
 }
 
-func getBookedUsersName(bookings []string) []string {
+func getBookedUsersName() []string {
 	var firstNamesofUsers []string
 
 	for _, booking := range bookings {
@@ -103,7 +104,7 @@ func getBookedUsersName(bookings []string) []string {
 	return firstNamesofUsers
 }
 
-func bookTicket(bookings []string, firstName string, lastName string, userTickets uint8, remainingTickets uint8) ([]string, uint8) {
+func bookTicket(firstName string, lastName string, userTickets uint8) ([]string, uint8) {
 	bookings = append(bookings, firstName+" "+lastName)
 	remainingTickets = remainingTickets - userTickets
 
