@@ -1,8 +1,9 @@
 package main
 
 import (
+	"booking-app/helper"
 	"fmt"
-	"strings"
+	"strconv"
 )
 
 const eventName string = "Go Conference, 2022"
@@ -10,7 +11,7 @@ const totalTickets uint8 = 50
 const reservedTickets uint8 = 10
 
 var remainingTickets uint8 = totalTickets - reservedTickets
-var bookings []string
+var bookings = make([]map[string]string, 0) // empty slice of maps
 
 func main() {
 	greetUser()
@@ -27,10 +28,10 @@ func main() {
 		var isValidEmail bool
 		var isValidTicketNumber bool
 
-		isValidName, isValidEmail, isValidTicketNumber = validateUserInput(firstName, lastName, email, userTickets)
+		isValidName, isValidEmail, isValidTicketNumber = helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		if isValidName && isValidEmail && isValidTicketNumber {
-			bookings, remainingTickets = bookTicket(firstName, lastName, userTickets)
+			bookings, remainingTickets = bookTicket(firstName, lastName, email, userTickets)
 
 			fmt.Printf("Congratulations %v %v. You bought %v tickets. A confirmation mail will be sent to %v.\n", firstName, lastName, userTickets, email)
 
@@ -85,27 +86,27 @@ func getUserInput() (string, string, string, uint8) {
 	return firstName, lastName, email, userTickets
 }
 
-func validateUserInput(firstName string, lastName string, email string, userTickets uint8) (bool, bool, bool) {
-	var isValidName bool = len(firstName) >= 2 && len(lastName) >= 2
-	var isValidEmail bool = strings.Contains(email, "@")
-	var isValidTicketNumber bool = userTickets > 0 && userTickets <= remainingTickets
-
-	return isValidName, isValidEmail, isValidTicketNumber
-}
-
 func getBookedUsersName() []string {
 	var firstNamesofUsers []string
 
 	for _, booking := range bookings {
-		var extractedFirstname = strings.Fields(booking)[0]
+		var extractedFirstname = booking["firstName"]
 		firstNamesofUsers = append(firstNamesofUsers, extractedFirstname)
 	}
 
 	return firstNamesofUsers
 }
 
-func bookTicket(firstName string, lastName string, userTickets uint8) ([]string, uint8) {
-	bookings = append(bookings, firstName+" "+lastName)
+func bookTicket(firstName string, lastName string, email string, userTickets uint8) ([]map[string]string, uint8) {
+	// map
+	var userData = make(map[string]string)
+
+	userData["firstName"] = firstName
+	userData["lastName"] = lastName
+	userData["email"] = email
+	userData["numberOfTickets"] = strconv.Itoa(int(userTickets)) // in go all keys and values of a map must have same data type
+
+	bookings = append(bookings, userData)
 	remainingTickets = remainingTickets - userTickets
 
 	return bookings, remainingTickets
