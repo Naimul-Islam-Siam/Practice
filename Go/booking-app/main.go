@@ -3,15 +3,21 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
-	"strconv"
 )
+
+type UserData struct {
+	firstName       string
+	lastName        string
+	email           string
+	numberOfTickets uint8
+}
 
 const eventName string = "Go Conference, 2022"
 const totalTickets uint8 = 50
 const reservedTickets uint8 = 10
 
 var remainingTickets uint8 = totalTickets - reservedTickets
-var bookings = make([]map[string]string, 0) // empty slice of maps
+var bookings = make([]UserData, 0)
 
 func main() {
 	greetUser()
@@ -90,21 +96,21 @@ func getBookedUsersName() []string {
 	var firstNamesofUsers []string
 
 	for _, booking := range bookings {
-		var extractedFirstname = booking["firstName"]
+		var extractedFirstname = booking.firstName
 		firstNamesofUsers = append(firstNamesofUsers, extractedFirstname)
 	}
 
 	return firstNamesofUsers
 }
 
-func bookTicket(firstName string, lastName string, email string, userTickets uint8) ([]map[string]string, uint8) {
+func bookTicket(firstName string, lastName string, email string, userTickets uint8) ([]UserData, uint8) {
 	// map
-	var userData = make(map[string]string)
-
-	userData["firstName"] = firstName
-	userData["lastName"] = lastName
-	userData["email"] = email
-	userData["numberOfTickets"] = strconv.Itoa(int(userTickets)) // in go all keys and values of a map must have same data type
+	var userData = UserData{
+		firstName:       firstName,
+		lastName:        lastName,
+		email:           email,
+		numberOfTickets: userTickets,
+	}
 
 	bookings = append(bookings, userData)
 	remainingTickets = remainingTickets - userTickets
