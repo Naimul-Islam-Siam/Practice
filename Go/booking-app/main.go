@@ -3,6 +3,8 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
+	"sync"
+	"time"
 )
 
 type UserData struct {
@@ -18,6 +20,7 @@ const reservedTickets uint8 = 10
 
 var remainingTickets uint8 = totalTickets - reservedTickets
 var bookings = make([]UserData, 0)
+var wg = sync.WaitGroup{}
 
 func main() {
 	greetUser()
@@ -41,6 +44,9 @@ func main() {
 
 			fmt.Printf("Congratulations %v %v. You bought %v tickets. A confirmation mail will be sent to %v.\n", firstName, lastName, userTickets, email)
 
+			wg.Add(1)                                              // number of threads to wait for
+			go sendTicket(userTickets, firstName, lastName, email) // go routine
+
 			var firstNamesofUsers []string = getBookedUsersName()
 
 			fmt.Printf("%v tickets left.\n People who booked: %v.\n", remainingTickets, firstNamesofUsers)
@@ -63,6 +69,7 @@ func main() {
 			}
 		}
 	}
+	wg.Wait()
 }
 
 func greetUser() {
@@ -104,7 +111,6 @@ func getBookedUsersName() []string {
 }
 
 func bookTicket(firstName string, lastName string, email string, userTickets uint8) ([]UserData, uint8) {
-	// map
 	var userData = UserData{
 		firstName:       firstName,
 		lastName:        lastName,
@@ -116,4 +122,15 @@ func bookTicket(firstName string, lastName string, email string, userTickets uin
 	remainingTickets = remainingTickets - userTickets
 
 	return bookings, remainingTickets
+}
+
+func sendTicket(numberOfTickets uint8, firstName string, lastName string, email string) {
+	time.Sleep(5 * time.Second)
+	var ticket = fmt.Sprintf("%v tickets for %v %v", numberOfTickets, firstName, lastName)
+
+	fmt.Println("---------------")
+	fmt.Printf("Sent %v\n to: %v\n", ticket, email)
+	fmt.Println("---------------")
+
+	wg.Done()
 }
